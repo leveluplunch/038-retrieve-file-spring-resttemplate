@@ -28,8 +28,6 @@ public class ApplicationTests {
 	@Test
 	public void fetchFile() throws IOException {
 
-		// not really required as the default
-		// constructor in RestTemplate should cover it
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
 		messageConverters.add(new ByteArrayHttpMessageConverter());
 		
@@ -39,11 +37,14 @@ public class ApplicationTests {
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 
 		ResponseEntity<byte[]> response = restTemplate.exchange(
-				"http://www.leveluplunch.com/images/leveluplunch.svg",
+				"https://www.google.com/images/srpr/logo11w.png",
 				HttpMethod.GET, entity, byte[].class);
-
+		
 		if (response.getStatusCode() == HttpStatus.OK) {
-			Files.write(Paths.get("level-up-lunch.svg"), response.getBody());
+			Files.write(Paths.get("google.png"), response.getBody());
 		}
+		
+		
+
 	}
 }
